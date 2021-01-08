@@ -96,6 +96,22 @@ set_target_properties(chiaki PROPERTIES
 		MACOSX_BUNDLE_ICON_FILE chiaki.icns
 		RESOURCE "${RESOURCE_FILES}")
 
+
+# fred
+add_executable(pidecode_test src/pidecode_test.cpp src/H264_Decoder.cpp)
+target_include_directories(pidecode_test PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(pidecode_test chiaki-lib)
+target_link_libraries(pidecode_test
+/usr/lib/arm-linux-gnueabihf/libavcodec.so
+/usr/lib/arm-linux-gnueabihf/libavformat.so
+/usr/lib/arm-linux-gnueabihf/libavutil.so)
+#target_link_libraries(tentest FFMPEG::avutil)
+#target_link_libraries(tentest FFMPEG::avcodec)
+target_link_libraries(pidecode_test ILClient::ILClient)
+
+
+
+
 install(TARGETS chiaki
 		RUNTIME DESTINATION bin
 		BUNDLE DESTINATION bin)
